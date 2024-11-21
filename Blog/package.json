@@ -1,0 +1,20 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start:api": "clear && node ./api/index.js",
+    "start:web": "clear && node ./web/index.js",
+    "start": "npm run start:api && npm run start:web",
+    "dev": "nodemon --exec \"clear && node\" ./api/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@discovery-solutions/quick-server": "github:discovery-solutions/quick-server"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
