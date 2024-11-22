@@ -3,27 +3,31 @@ import { fetcher } from "./fetcher.js";
 
 export const useEntities = (key, params = {}) => {
   const [data, setData] = React.useState([]);
+  const [error, setError] = React.useState(null);
   
   const fetchEntities = async () => {
     try {
+      if (error) return;
+
       const queryString = new URLSearchParams(params).toString();
       const url = `/${key}${queryString ? `?${queryString}` : ""}`;
       
       const raw = await fetcher(url);
-      setData(raw[key] || raw);
+      setData(raw);
     } catch (error) {
       console.error(error);
+      setError(error);
     }
   }
 
   React.useEffect(() => {
+    if (error) return;
+
     fetchEntities();
-  }, [key, JSON.stringify(params)]);
+  }, [error]);
 
-  return [data];
+  return [data, error];
 };
-
-
 
 export const useEntitiy = (key, id) => {
   const [entity, setEntity] = React.useState(null);
@@ -39,8 +43,33 @@ export const useEntitiy = (key, id) => {
   }
 
   React.useEffect(() => {
-    fetchEntity()
+    fetchEntity();
   }, []);
 
   return [entity];
+};
+
+export const useTags = () => {
+  const [data, setData] = React.useState([]);
+  const [error, setError] = React.useState(null);
+  
+  const fetchTags = async () => {
+    try {
+      if (error) return;
+
+      const raw = await fetcher('/post/tags');
+      setData(raw);
+    } catch (error) {
+      console.error(error);
+      setError(error);
+    }
+  }
+
+  React.useEffect(() => {
+    if (error) return;
+
+    fetchTags();
+  }, [error]);
+
+  return [data, error];
 };

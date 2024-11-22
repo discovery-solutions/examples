@@ -3,8 +3,8 @@ import { useEntities } from '../../utils/hooks.js';
 
 register("qs-post-list", () => {
   const [raw, pagination ] = useEntities('post');
+  const mainPost = raw.pop();
   const posts = raw.slice(1);
-  const mainPost = raw[0];
   
   if (!mainPost) return render`<div></div>`;
   
