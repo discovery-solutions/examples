@@ -6,13 +6,14 @@ register("qs-post-list", () => {
   const mainPost = raw.pop();
   const posts = raw.slice(1);
   
-  if (!mainPost) return render`<div></div>`;
+  if (!mainPost)
+    return render`<div style="height: 100px"><h4>Loading content...</h4></div>`;
   
   return render`
     <div>
       <qs-post-item data-post="${mainPost}"></qs-post-item>
 
-      <div class="row">
+      <div class="row mt-4">
         ${ posts.map((post) => render`
           <div class="col-lg-6">
             <qs-post-item data-post="${post}"></qs-post-item>

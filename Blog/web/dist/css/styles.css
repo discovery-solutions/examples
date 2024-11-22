@@ -10824,3 +10824,17 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+
+/* CUSTOM */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  height: 100%;
+}
+
+.page-wrapper {
+  height: 100%;
+  padding: 3rem;
+  box-sizing: content-box;
+}

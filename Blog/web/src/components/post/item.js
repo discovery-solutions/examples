@@ -5,7 +5,7 @@ register("qs-post-item", ({ post }) => {
   const link = `post.html?id=${post.id}`;
   
   return render`
-    <div class="card mb-4">
+    <div class="card">
       <a href="${link}">
         <img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="${post.title}" />
       </a>

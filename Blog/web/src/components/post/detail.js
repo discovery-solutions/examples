@@ -6,7 +6,7 @@ register("qs-post-detail", () => {
   const id = params.get('id');
 
   if (id === null)
-    return render`<div>Post not found</div>`;
+    return render`<div style="height: 100px"><h4>Post not found</h4></div>`;
 
   const [post] = useEntitiy('post', id);
 
