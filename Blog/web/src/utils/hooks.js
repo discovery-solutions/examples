@@ -1,12 +1,15 @@
 import * as React from 'https://discovery-solutions.github.io/react/dist/index.mjs';
 import { fetcher } from "./fetcher.js";
 
-export const useEntities = (key) => {
+export const useEntities = (key, params = {}) => {
   const [data, setData] = React.useState([]);
   
   const fetchEntities = async () => {
     try {
-      const raw = await fetcher(`/${key}`);
+      const queryString = new URLSearchParams(params).toString();
+      const url = `/${key}${queryString ? `?${queryString}` : ""}`;
+      
+      const raw = await fetcher(url);
       setData(raw[key] || raw);
     } catch (error) {
       console.error(error);
@@ -14,11 +17,12 @@ export const useEntities = (key) => {
   }
 
   React.useEffect(() => {
-    fetchEntities()
-  }, []);
+    fetchEntities();
+  }, [key, JSON.stringify(params)]);
 
-  return [(data || [])];
+  return [data];
 };
+
 
 
 export const useEntitiy = (key, id) => {
