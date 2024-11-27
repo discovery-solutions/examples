@@ -46,6 +46,7 @@ auth:
           update: true
           delete: true
 
+
 databases:
   - type: mongodb
     key: "mongodb"
@@ -56,10 +57,6 @@ databases:
 entities:
   - name: "user"
     alias: "User"
-    auth:
-      type: "jwt"
-      jwt:
-        fields: ["email", "password"]
     fields:
       name:
         type: "string"
